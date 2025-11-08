@@ -28,6 +28,13 @@ app.post("/get_data_esp",(req,res)=>{
         res.status(401).json({message:"no data😔"})
     }
 })
+app.get("/data_esp",(req,res)=>{
+    if(slot1&&slot2&&slot3&&slot4){
+        res.status(200).json({s1:{slot1},s2:{slot2},s3:{slot3},s4:{slot4}})
+    }else{
+        res.status(400).json({message:"no data"})
+    }
+})
 app.listen("3000",()=>{
     console.log("server is running on port 3000")
 })
