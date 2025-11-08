@@ -8,7 +8,7 @@ const slot4="green"
 app.get("/",(req,res)=>{
     res.send("<h1>hello from server</h1>")
 })
-app.get("/get_data_esp",(req,res)=>{
+app.post("/get_data_esp",(req,res)=>{
     const {s1,s2,s3,s4}= req.body
     console.log(slot1)
     console.log(slot2)
