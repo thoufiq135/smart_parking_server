@@ -1,10 +1,10 @@
 const express=require("express")
 const app=express()
 app.use(express.json())
-const slot1="green"
-const slot2="green"
-const slot3="green"
-const slot4="green"
+let slot1="green"
+let slot2="green"
+let slot3="green"
+let slot4="green"
 app.get("/",(req,res)=>{
     res.send("<h1>hello from server</h1>")
 })
