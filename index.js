@@ -2,7 +2,7 @@ const express=require("express")
 const app=express()
 app.use(express.json())
 let slot1="green"
-let slot2="yellow"
+let slot2="green"
 let slot3="green"
 let slot4="green"
 app.get("/",(req,res)=>{
@@ -43,6 +43,26 @@ app.get("/data_esp",(req,res)=>{
     }else{
         res.status(400).json({message:"no data"})
     }
+})
+//esp mit end points
+app.post("/mit_get_data",(req,res)=>{
+    const {book_slot}=req.body
+    if(book_slot=="s1"){
+slot1="yellow"
+  res.status(200).send({message:"slot booked"})
+    }else if(book_slot=="s2"){
+        slot2="yellow"
+        res.status(200).send({message:"slot booked"})
+    }else if(book_slot=="s3"){
+        slot3="yellow"
+        res.status(200).send({message:"slot booked"})
+    }else if(book_slot=="s4"){
+        slot4="yellow"
+        res.status(200).send({message:"slot booked"})
+    }else{
+        res.status(401).send({message:"slot not found"})
+    }
+
 })
 app.listen("3000",()=>{
     console.log("server is running on port 3000")
