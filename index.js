@@ -1,7 +1,7 @@
 const express=require("express")
 const app=express()
 app.use(express.json())
-let slot1="green"
+let slot1="yellow"
 let slot2="green"
 let slot3="green"
 let slot4="green"
