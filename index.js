@@ -47,6 +47,7 @@ app.get("/data_esp",(req,res)=>{
 //esp mit end points
 app.post("/mit_get_data",(req,res)=>{
     const {book_slot}=req.body
+    console.log(book_slot)
     if(book_slot=="s1"){
 slot1="yellow"
   res.status(200).send({message:"slot booked"})
@@ -75,4 +76,4 @@ app.get("/mit_send_data",(req,res)=>{
 })
 app.listen("3000",()=>{
     console.log("server is running on port 3000")
-})
+}) 
