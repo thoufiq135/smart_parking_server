@@ -51,35 +51,7 @@ app.post("/mit_get_data", (req, res) => {
   let data = req.body;
 
   // Handle if MIT App sends text instead of JSON
-  if (typeof data === "string") {
-    try {
-      data = JSON.parse(data);
-    } catch (e) {
-      console.error("Invalid JSON from MIT App:", data);
-      return res.status(400).json({ error: "Invalid JSON format" });
-    }
-  }
-
-  const { book_slot } = data;
-
-  if (!book_slot) {
-    return res.status(400).json({ error: "Missing book_slot in request" });
-  }
-
-  console.log("Book Slot:", book_slot);
-
-  if (book_slot === "s1") slot1 = "yellow";
-  if (book_slot === "s2") slot2 = "yellow";
-  if (book_slot === "s3") slot3 = "yellow";
-  if (book_slot === "s4") slot4 = "yellow";
-
-  // Send updated data back
-  res.status(200).json({
-    s1: { slot1 },
-    s2: { slot2 },
-    s3: { slot3 },
-    s4: { slot4 },
-  });
+  console.log(typeof(data))
 });
 app.get("/mit_send_data",(req,res)=>{
    if(slot1&&slot2&&slot3&&slot4){
