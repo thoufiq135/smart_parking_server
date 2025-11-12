@@ -9,7 +9,7 @@ let slot2="green"
 let slot3="green"
 let slot4="green"
 app.get("/",(req,res)=>{
-    res.send("<h1>hello from server</h1>")
+    res.send("<h1>hello from smart parking server</h1>")
 })
 //esp main endpoints
 app.post("/get_data_esp",(req,res)=>{
