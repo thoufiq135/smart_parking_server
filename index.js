@@ -49,7 +49,7 @@ app.get("/data_esp",(req,res)=>{
 
 app.post("/mit_get_data", (req, res) => {
   let data = req.body;
-
+console.log(data)
   // Handle if MIT App sends text instead of JSON
   console.log(typeof(data))
 });
