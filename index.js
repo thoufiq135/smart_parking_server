@@ -1,7 +1,7 @@
 const express=require("express")
 const app=express()
 app.use(express.json())
-app.use(express.text())
+app.use(express.text({ type: "/" }));
 let slot1="green"
 let slot2="green"
 let slot3="green"
@@ -46,12 +46,46 @@ app.get("/data_esp",(req,res)=>{
     }
 })
 //esp mit end points
-
 app.post("/mit_get_data", (req, res) => {
   let data = req.body;
-console.log(data)
-  // Handle if MIT App sends text instead of JSON
-  console.log(typeof(data))
+
+  console.log("Raw body from MIT App:", data);
+  console.log("Type of req.body:", typeof data);
+
+  // Handle when MIT App sends as text
+  if (typeof data === "string" && data.trim() !== "") {
+    try {
+      data = JSON.parse(data);
+    } catch (e) {
+      console.error("❌ Invalid JSON from MIT App:", data);
+      return res.status(400).json({ error: "Invalid JSON format" });
+    }
+  } else if (!data) {
+    console.error("❌ No data received from MIT App");
+    return res.status(400).json({ error: "Empty body from MIT App" });
+  }
+
+  const { book_slot } = data || {};
+
+  if (!book_slot) {
+    console.error("❌ book_slot missing");
+    return res.status(400).json({ error: "Missing book_slot in request" });
+  }
+
+  console.log("✅ Book Slot:", book_slot);
+
+  // Update slot
+  if (book_slot === "s1") slot1 = "yellow";
+  if (book_slot === "s2") slot2 = "yellow";
+  if (book_slot === "s3") slot3 = "yellow";
+  if (book_slot === "s4") slot4 = "yellow";
+
+  res.status(200).json({
+    s1: { slot1 },
+    s2: { slot2 },
+    s3: { slot3 },
+    s4: { slot4 },
+  });
 });
 app.get("/mit_send_data",(req,res)=>{
    if(slot1&&slot2&&slot3&&slot4){
