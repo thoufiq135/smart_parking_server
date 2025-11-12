@@ -1,7 +1,9 @@
 const express=require("express")
 const app=express()
+const body_parser=require("body-parser")
 app.use(express.json())
 app.use(express.text({ type: "/" }));
+app.use(body_parser.text({type:"*/*"}))
 let slot1="green"
 let slot2="green"
 let slot3="green"
